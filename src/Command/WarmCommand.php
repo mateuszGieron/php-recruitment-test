@@ -39,8 +39,12 @@ class WarmCommand
             $warmer->setHostname($website->getHostname());
             $warmer->setActor($actor);
 
+            /** @var \Snowdog\DevTest\Model\Page $page */
             foreach ($pages as $page) {
                 $warmer->warm($page->getUrl());
+
+                $dateTime = date('Y-m-d H:i:s');
+                $this->pageManager->updateLastVisitTime((int) $page->getPageId(), $dateTime);
             }
         } else {
             $output->writeln('<error>Website with ID ' . $id . ' does not exists!</error>');
