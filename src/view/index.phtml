@@ -48,6 +48,31 @@
                 </form>
             </div>
 
+            <div class="padded">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Total Pages</th>
+                        <th>Most Recently Visited</th>
+                        <th>Least Recently Visited</th>
+                    </tr>
+                    <?php $stats = $this->getPagesStatistics(); ?>
+                    <tr>
+                        <td><?php echo $stats['total'] ?? '--' ?></td>
+                        <td>
+                            <?php
+                                echo ($stats['most_recently_visited']['hostname']  ?? '--') . '/' .
+                                    ($stats['most_recently_visited']['url'] ?? '--')
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                                echo ($stats['least_recently_visited']['hostname']  ?? '--') . '/' .
+                                    ($stats['least_recently_visited']['url'] ?? '--')
+                            ?>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
             <div class="padded">
                 <table class="table table-striped">
