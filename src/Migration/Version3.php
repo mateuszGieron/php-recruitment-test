@@ -13,18 +13,6 @@ class Version3
      * @var Database|\PDO
      */
     private $database;
-    /**
-     * @var UserManager
-     */
-    private $userManager;
-    /**
-     * @var WebsiteManager
-     */
-    private $websiteManager;
-    /**
-     * @var PageManager
-     */
-    private $pageManager;
 
     public function __construct(
         Database $database
