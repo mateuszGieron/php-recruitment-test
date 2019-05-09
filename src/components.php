@@ -24,7 +24,6 @@ use Snowdog\DevTest\Controller\CreateVarnishAction;
 use Snowdog\DevTest\Controller\CreateVarnishLinkAction;
 use Snowdog\DevTest\Controller\CreateVarnishUnlinkAction;
 
-
 CommandRepository::registerCommand('migrate_db', MigrateCommand::class);
 CommandRepository::registerCommand('warm [id]', WarmCommand::class);
 RouteRepository::registerRoute('POST', '/register', RegisterAction::class, 'execute');
