@@ -27,9 +27,20 @@ class VarnishManager
         return $query->fetchAll(\PDO::FETCH_CLASS, Varnish::class);
     }
 
-    public function getWebsites(Varnish $varnish)
+    /**
+     * Get linked websites to varnish
+     *
+     * @param Varnish $varnish
+     *
+     * @return array|null
+     */
+    public function getWebsites(Varnish $varnish): ?array
     {
-        // TODO: add logic here
+        /** @var \PDOStatement $query */
+        $query = $this->database->prepare('SELECT website_id FROM varnishes_websites WHERE varnish_id = :varnish_id');
+        $query->bindParam(':varnish_id', $varnish->getVarnishId(), \PDO::PARAM_INT);
+        $query->execute();
+        return $query->fetchAll(\PDO::FETCH_COLUMN);
     }
 
     public function getByWebsite(Website $website)
@@ -54,14 +65,40 @@ class VarnishManager
         return $this->database->lastInsertId();
     }
 
-    public function link($varnish, $website)
+    /**
+     * Link website with varnish
+     *
+     * @param int $varnish
+     * @param int $website
+     *
+     * @return bool
+     */
+    public function link(int $varnish, int $website): bool
     {
-        // TODO: add logic here
+        $statement = $this->database->prepare(
+            'INSERT INTO varnishes_websites (varnish_id, website_id) VALUES (:varnish_id, :website_id)'
+        );
+        $statement->bindParam(':varnish_id', $varnish, \PDO::PARAM_INT);
+        $statement->bindParam(':website_id', $website, \PDO::PARAM_INT);
+        return $statement->execute();
     }
 
-    public function unlink($varnish, $website)
+    /**
+     * Unlink website with varnish
+     *
+     * @param int $varnish
+     * @param int $website
+     *
+     * @return bool
+     */
+    public function unlink(int $varnish, int $website): bool
     {
-        // TODO: add logic here
+        $statement = $this->database->prepare(
+            'DELETE FROM varnishes_websites WHERE varnish_id = :varnish_id AND website_id = :website_id'
+        );
+        $statement->bindParam(':varnish_id', $varnish, \PDO::PARAM_INT);
+        $statement->bindParam(':website_id', $website, \PDO::PARAM_INT);
+        return $statement->execute();
     }
 
 }

@@ -5,7 +5,7 @@ namespace Snowdog\DevTest\Controller;
 use Snowdog\DevTest\Model\UserManager;
 use Snowdog\DevTest\Model\VarnishManager;
 
-class CreateVarnishLinkAction
+class CreateVarnishUnlinkAction
 {
     /**
      * @var UserManager
@@ -37,10 +37,10 @@ class CreateVarnishLinkAction
                 $response['flash'] = 'Varnish server ID cannot be empty!';
             } elseif (empty($websiteId)) {
                 $response['flash'] = 'Website ID cannot be empty!';
-            } elseif ($this->varnishManager->link($varnishId, $websiteId)) {
-                $response['flash'] = 'Website linked to Varnish server!';
+            } elseif ($this->varnishManager->unlink($varnishId, $websiteId)) {
+                $response['flash'] = 'Website unlinked!';
             } else {
-                $response['flash'] = 'Unable to link!';
+                $response['flash'] = 'Unable to unlink!';
             }
         }
 

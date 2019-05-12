@@ -34,7 +34,6 @@ class CreateVarnishAction
     {
         if ($this->user) {
             $ip = $_POST['ip'];
-            $userId = $this->user->getUserId();
 
             if (empty($ip)) {
                 $_SESSION['flash'] = 'IP cannot be empty!';

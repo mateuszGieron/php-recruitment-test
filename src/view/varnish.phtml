@@ -23,7 +23,7 @@
 
 <?php \Snowdog\DevTest\Component\Menu::getInstance()->render() ?>
 
-<div class="container">
+<div class="container js-container">
 
     <?php if (isset($_SESSION['flash'])): ?>
         <p class="bg-info"><?= $_SESSION['flash'] ?></p>
@@ -50,8 +50,7 @@
         <div class="js-vernish-website-assoc">
         <?php foreach ($this->getVarnishes() as $varnish): /** @var \Snowdog\DevTest\Model\Varnish $varnish */ ?>
             <?php $websiteIds = $this->getAssignedWebsiteIds($varnish) ?>
-            <h2><?= $varnish->getIP() ?></h2>
-            <button type="button" class="btn btn-primary js-submit-association" >Update Associated</button>
+            <h2><?= $varnish->getIp() ?></h2>
 
             <div class="padded">
                 <table class="table table-striped">
@@ -62,7 +61,7 @@
                     </tr>
                     <?php foreach ($this->getWebsites() as $website): /** @var \Snowdog\DevTest\Model\Website $website */ ?>
                         <tr>
-                            <td><input type="checkbox" <?= in_array($website->getWebsiteId(), $websiteIds) ? 'checked="checked"' : '' ?>/></td>
+                            <td><input class="js-website-id" data-website-id="<?= $website->getWebsiteId() ?>" data-varnish-id="<?= $varnish->getVarnishId() ?>" type="checkbox" <?= in_array($website->getWebsiteId(), $websiteIds) ? 'checked="checked"' : '' ?>/></td>
                             <td><?= $website->getName() ?></td>
                             <td><?= $website->getHostname() ?></td>
                         </tr>

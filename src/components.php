@@ -21,7 +21,8 @@ use Snowdog\DevTest\Controller\LoginAction;
 use Snowdog\DevTest\Controller\RegisterAction;
 use Snowdog\DevTest\Controller\VarnishesAction;
 use Snowdog\DevTest\Controller\CreateVarnishAction;
-
+use Snowdog\DevTest\Controller\CreateVarnishLinkAction;
+use Snowdog\DevTest\Controller\CreateVarnishUnlinkAction;
 
 CommandRepository::registerCommand('migrate_db', MigrateCommand::class);
 CommandRepository::registerCommand('warm [id]', WarmCommand::class);
@@ -36,6 +37,8 @@ RouteRepository::registerRoute('GET', '/website/{id:\d+}', WebsiteAction::class,
 RouteRepository::registerRoute('POST', '/website', CreateWebsiteAction::class, 'execute');
 RouteRepository::registerRoute('GET', '/varnishes', VarnishesAction::class, 'execute');
 RouteRepository::registerRoute('POST', '/varnish', CreateVarnishAction::class, 'execute');
+RouteRepository::registerRoute('POST', '/varnish-link', CreateVarnishLinkAction::class, 'execute');
+RouteRepository::registerRoute('POST', '/varnish-unlink', CreateVarnishUnlinkAction::class, 'execute');
 Menu::register(RegisterMenu::class, 250);
 Menu::register(LoginMenu::class, 200);
 Menu::register(WebsitesMenu::class, 10);

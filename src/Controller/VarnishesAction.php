@@ -55,8 +55,8 @@ class VarnishesAction
     {
         $websites = $this->varnishManager->getWebsites($varnish);
         $ids = [];
-        foreach($websites as $website) {
-            $ids[] = $website->getWebsiteId();
+        foreach($websites as $websiteId) {
+            $ids[] = $websiteId;
         }
         return $ids;
     }
