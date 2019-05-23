@@ -23,9 +23,13 @@ use Snowdog\DevTest\Controller\VarnishesAction;
 use Snowdog\DevTest\Controller\CreateVarnishAction;
 use Snowdog\DevTest\Controller\CreateVarnishLinkAction;
 use Snowdog\DevTest\Controller\CreateVarnishUnlinkAction;
+use Snowdog\DevTest\Controller\ImportSitemapAction;
+use Snowdog\DevTest\Command\SitemapImportCommand;
 
 CommandRepository::registerCommand('migrate_db', MigrateCommand::class);
 CommandRepository::registerCommand('warm [id]', WarmCommand::class);
+CommandRepository::registerCommand('sitemap_import [sitemapPath] [userLogin]', SitemapImportCommand::class);
+
 RouteRepository::registerRoute('POST', '/register', RegisterAction::class, 'execute');
 RouteRepository::registerRoute('GET', '/', IndexAction::class, 'execute');
 RouteRepository::registerRoute('POST', '/page', CreatePageAction::class, 'execute');
@@ -39,6 +43,8 @@ RouteRepository::registerRoute('GET', '/varnishes', VarnishesAction::class, 'exe
 RouteRepository::registerRoute('POST', '/varnish', CreateVarnishAction::class, 'execute');
 RouteRepository::registerRoute('POST', '/varnish-link', CreateVarnishLinkAction::class, 'execute');
 RouteRepository::registerRoute('POST', '/varnish-unlink', CreateVarnishUnlinkAction::class, 'execute');
+RouteRepository::registerRoute('POST', '/importsitemap', ImportSitemapAction::class, 'execute');
+
 Menu::register(RegisterMenu::class, 250);
 Menu::register(LoginMenu::class, 200);
 Menu::register(WebsitesMenu::class, 10);

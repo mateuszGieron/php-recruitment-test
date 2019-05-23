@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6b28b1544eb707603d7df66a5160d2f",
+    "content-hash": "1506e3ce663441340e7fe2b981b39bc9",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -36,6 +36,43 @@
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "mg/sitemapparser",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mateuszGieron/sd-recruitment-test-component.git",
+                "reference": "28dce6252653f839e5eb30c173f36e96d6b5ab64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mateuszGieron/sd-recruitment-test-component/zipball/28dce6252653f839e5eb30c173f36e96d6b5ab64",
+                "reference": "28dce6252653f839e5eb30c173f36e96d6b5ab64",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "php": ">=7.1.0"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Snowdog\\DevTest\\": "src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Mateusz",
+                    "email": "mateusz@gate-software.pl"
+                }
+            ],
+            "description": "Sitemap Parser",
+            "support": {
+                "source": "https://github.com/mateuszGieron/sd-recruitment-test-component/tree/0.0.1",
+                "issues": "https://github.com/mateuszGieron/sd-recruitment-test-component/issues"
+            },
+            "time": "2019-05-23T17:54:28+00:00"
         },
         {
             "name": "mnapoli/silly",
