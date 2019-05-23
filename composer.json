@@ -4,7 +4,8 @@
     "nikic/fast-route": "^1.0",
     "php-di/php-di": "5.3",
     "php": ">=7.1.0",
-    "mnapoli/silly": "^1.3"
+    "mnapoli/silly": "^1.3",
+    "mg/sitemapparser": "0.0.1"
   },
   "autoload": {
     "files": [
@@ -14,5 +15,11 @@
     "psr-4": {
       "Snowdog\\DevTest\\": "src"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "https://github.com/mateuszGieron/sd-recruitment-test-component.git"
+    }
+  ]
 }
