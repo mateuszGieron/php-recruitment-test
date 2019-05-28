@@ -12,6 +12,7 @@ class RouteRepository
     const ROUTE = 'route';
     const CLASS_NAME = 'class_name';
     const METHOD_NAME = 'method_name';
+    const AUTH_REQUIRED = 'auth_required';
 
 
     /**
@@ -25,10 +26,10 @@ class RouteRepository
         return self::$instance;
     }
 
-    public static function registerRoute($httpMethod, $route, $className, $methodName)
+    public static function registerRoute($httpMethod, $route, $className, $methodName, $authRequired)
     {
         $instance = self::getInstance();
-        $instance->addRoute($httpMethod, $route, $className, $methodName);
+        $instance->addRoute($httpMethod, $route, $className, $methodName, $authRequired);
     }
 
     public function __invoke(RouteCollector $r)
@@ -39,19 +40,21 @@ class RouteRepository
                 $route[self::ROUTE],
                 [
                     $route[self::CLASS_NAME],
-                    $route[self::METHOD_NAME]
+                    $route[self::METHOD_NAME],
+                    $route[self::AUTH_REQUIRED]
                 ]
             );
         }
     }
 
-    private function addRoute($httpMethod, $route, $className, $methodName)
+    private function addRoute($httpMethod, $route, $className, $methodName, $authRequired)
     {
         $this->routes[] = [
             self::HTTP_METHOD => $httpMethod,
             self::ROUTE => $route,
             self::CLASS_NAME => $className,
             self::METHOD_NAME => $methodName,
+            self::AUTH_REQUIRED => $authRequired,
         ];
     }
 }

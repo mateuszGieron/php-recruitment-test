@@ -36,9 +36,10 @@ class VarnishManager
      */
     public function getWebsites(Varnish $varnish): ?array
     {
+        $varnishId = $varnish->getVarnishId();
         /** @var \PDOStatement $query */
         $query = $this->database->prepare('SELECT website_id FROM varnishes_websites WHERE varnish_id = :varnish_id');
-        $query->bindParam(':varnish_id', $varnish->getVarnishId(), \PDO::PARAM_INT);
+        $query->bindParam(':varnish_id', $varnishId, \PDO::PARAM_INT);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_COLUMN);
     }
