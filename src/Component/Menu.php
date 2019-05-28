@@ -3,6 +3,8 @@
 namespace Snowdog\DevTest\Component;
 
 use DI\InvokerInterface;
+use Snowdog\DevTest\Model\UserManager;
+use Snowdog\DevTest\Core\Database;
 
 class Menu
 {
@@ -22,8 +24,17 @@ class Menu
         return self::$instance;
     }
     
-    public static function register($className, $sortOrder)
+    public static function register($className, $sortOrder, $authRequired)
     {
+        $userManager = new UserManager(new Database());
+        if (isset($_SESSION['login'])) {
+            $user = $userManager->getByLogin($_SESSION['login']);
+        }
+
+        if ($authRequired && !isset($user)) {
+            return;
+        }
+
         $instance = self::getInstance();
         $instance->registerMenuItem($className, $sortOrder);
     }
